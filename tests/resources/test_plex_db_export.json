@@ -1,0 +1,726 @@
+{
+  "MediaContainer": {
+    "size": 2,
+    "totalSize": 2,
+    "allowSync": true,
+    "art": "/:/resources/movie-fanart.jpg",
+    "identifier": "com.plexapp.plugins.library",
+    "librarySectionID": 1,
+    "librarySectionTitle": "Films",
+    "librarySectionUUID": "some_uuid",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1603922053,
+    "offset": 0,
+    "thumb": "/:/resources/movie.png",
+    "title1": "Films",
+    "title2": "All Films",
+    "viewGroup": "movie",
+    "viewMode": 65592,
+    "Meta": {
+      "Type": [
+        {
+          "key": "/library/sections/1/all?type=1",
+          "type": "movie",
+          "title": "Movies",
+          "active": true,
+          "Filter": [
+            {
+              "filter": "genre",
+              "filterType": "string",
+              "key": "/library/sections/1/genre",
+              "title": "Genre",
+              "type": "filter"
+            },
+            {
+              "filter": "year",
+              "filterType": "integer",
+              "key": "/library/sections/1/year",
+              "title": "Year",
+              "type": "filter"
+            },
+            {
+              "filter": "decade",
+              "filterType": "integer",
+              "key": "/library/sections/1/decade",
+              "title": "Decade",
+              "type": "filter"
+            },
+            {
+              "filter": "contentRating",
+              "filterType": "string",
+              "key": "/library/sections/1/contentRating",
+              "title": "Content Rating",
+              "type": "filter"
+            },
+            {
+              "filter": "collection",
+              "filterType": "string",
+              "key": "/library/sections/1/collection",
+              "title": "Collection",
+              "type": "filter"
+            },
+            {
+              "filter": "director",
+              "filterType": "string",
+              "key": "/library/sections/1/director",
+              "title": "Director",
+              "type": "filter"
+            },
+            {
+              "filter": "actor",
+              "filterType": "string",
+              "key": "/library/sections/1/actor",
+              "title": "Actor",
+              "type": "filter"
+            },
+            {
+              "filter": "writer",
+              "filterType": "string",
+              "key": "/library/sections/1/writer",
+              "title": "Writer",
+              "type": "filter"
+            },
+            {
+              "filter": "producer",
+              "filterType": "string",
+              "key": "/library/sections/1/producer",
+              "title": "Producer",
+              "type": "filter"
+            },
+            {
+              "filter": "country",
+              "filterType": "string",
+              "key": "/library/sections/1/country",
+              "title": "Country",
+              "type": "filter"
+            },
+            {
+              "filter": "studio",
+              "filterType": "string",
+              "key": "/library/sections/1/studio",
+              "title": "Studio",
+              "type": "filter"
+            },
+            {
+              "filter": "resolution",
+              "filterType": "string",
+              "key": "/library/sections/1/resolution",
+              "title": "Resolution",
+              "type": "filter"
+            },
+            {
+              "filter": "hdr",
+              "filterType": "boolean",
+              "key": "/library/sections/1/hdr",
+              "title": "HDR",
+              "type": "filter"
+            },
+            {
+              "filter": "unwatched",
+              "filterType": "boolean",
+              "key": "/library/sections/1/unwatched",
+              "title": "Unplayed",
+              "type": "filter"
+            },
+            {
+              "filter": "inProgress",
+              "filterType": "boolean",
+              "key": "/library/sections/1/inProgress",
+              "title": "In Progress",
+              "type": "filter"
+            },
+            {
+              "filter": "unmatched",
+              "filterType": "boolean",
+              "key": "/library/sections/1/unmatched",
+              "title": "Unmatched",
+              "type": "filter"
+            },
+            {
+              "filter": "audioLanguage",
+              "filterType": "string",
+              "key": "/library/sections/1/audioLanguage",
+              "title": "Audio Language",
+              "type": "filter"
+            },
+            {
+              "filter": "subtitleLanguage",
+              "filterType": "string",
+              "key": "/library/sections/1/subtitleLanguage",
+              "title": "Subtitle Language",
+              "type": "filter"
+            },
+            {
+              "filter": "label",
+              "filterType": "string",
+              "key": "/library/sections/1/label",
+              "title": "Labels",
+              "type": "filter"
+            },
+            {
+              "filter": "duplicate",
+              "filterType": "boolean",
+              "key": "/library/sections/1/duplicate",
+              "title": "Duplicates",
+              "type": "filter",
+              "advanced": true
+            }
+          ],
+          "Sort": [
+            {
+              "active": true,
+              "activeDirection": "asc",
+              "default": "asc",
+              "defaultDirection": "asc",
+              "descKey": "titleSort:desc",
+              "firstCharacterKey": "/library/sections/1/firstCharacter",
+              "key": "titleSort",
+              "title": "Title"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "year:desc",
+              "key": "year",
+              "title": "Year"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "originallyAvailableAt:desc",
+              "key": "originallyAvailableAt",
+              "title": "Release Date"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "rating:desc",
+              "key": "rating",
+              "title": "Critic Rating"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "audienceRating:desc",
+              "key": "audienceRating",
+              "title": "Audience Rating"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "userRating:desc",
+              "key": "userRating",
+              "title": "Rating"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "contentRating:desc",
+              "key": "contentRating",
+              "title": "Content Rating"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "duration:desc",
+              "key": "duration",
+              "title": "Duration"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "viewOffset:desc",
+              "key": "viewOffset",
+              "title": "Progress"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "viewCount:desc",
+              "key": "viewCount",
+              "title": "Plays"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "addedAt:desc",
+              "key": "addedAt",
+              "title": "Date Added"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "lastViewedAt:desc",
+              "key": "lastViewedAt",
+              "title": "Date Viewed"
+            },
+            {
+              "defaultDirection": "asc",
+              "descKey": "mediaHeight:desc",
+              "key": "mediaHeight",
+              "title": "Resolution"
+            },
+            {
+              "defaultDirection": "desc",
+              "descKey": "mediaBitrate:desc",
+              "key": "mediaBitrate",
+              "title": "Bitrate"
+            }
+          ],
+          "Field": [
+            {
+              "key": "title",
+              "title": "Title",
+              "type": "string"
+            },
+            {
+              "key": "studio",
+              "title": "Studio",
+              "type": "string"
+            },
+            {
+              "key": "userRating",
+              "subType": "rating",
+              "title": "Rating",
+              "type": "integer"
+            },
+            {
+              "key": "contentRating",
+              "title": "Content Rating",
+              "type": "tag"
+            },
+            {
+              "key": "year",
+              "subType": "year",
+              "title": "Year",
+              "type": "integer"
+            },
+            {
+              "key": "decade",
+              "subType": "decade",
+              "title": "Decade",
+              "type": "integer"
+            },
+            {
+              "key": "originallyAvailableAt",
+              "title": "Release Date",
+              "type": "date"
+            },
+            {
+              "key": "duration",
+              "subType": "duration",
+              "title": "Duration",
+              "type": "integer"
+            },
+            {
+              "key": "studio",
+              "title": "Studio",
+              "type": "string"
+            },
+            {
+              "key": "unmatched",
+              "title": "Unmatched",
+              "type": "boolean"
+            },
+            {
+              "key": "duplicate",
+              "title": "Duplicate",
+              "type": "boolean"
+            },
+            {
+              "key": "genre",
+              "title": "Genre",
+              "type": "tag"
+            },
+            {
+              "key": "collection",
+              "title": "Collection",
+              "type": "tag"
+            },
+            {
+              "key": "director",
+              "title": "Director",
+              "type": "tag"
+            },
+            {
+              "key": "writer",
+              "title": "Writer",
+              "type": "tag"
+            },
+            {
+              "key": "producer",
+              "title": "Producer",
+              "type": "tag"
+            },
+            {
+              "key": "actor",
+              "title": "Actor",
+              "type": "tag"
+            },
+            {
+              "key": "country",
+              "title": "Country",
+              "type": "tag"
+            },
+            {
+              "key": "addedAt",
+              "title": "Date Added",
+              "type": "date"
+            },
+            {
+              "key": "viewCount",
+              "title": "Plays",
+              "type": "integer"
+            },
+            {
+              "key": "lastViewedAt",
+              "title": "Last Played",
+              "type": "date"
+            },
+            {
+              "key": "unwatched",
+              "title": "Unplayed",
+              "type": "boolean"
+            },
+            {
+              "key": "resolution",
+              "title": "Resolution",
+              "type": "resolution"
+            },
+            {
+              "key": "hdr",
+              "subType": "hdr",
+              "title": "HDR",
+              "type": "boolean"
+            },
+            {
+              "key": "mediaSize",
+              "subType": "fileSize",
+              "title": "File Size",
+              "type": "integer"
+            },
+            {
+              "key": "mediaBitrate",
+              "subType": "bitrate",
+              "title": "Bitrate",
+              "type": "integer"
+            },
+            {
+              "key": "subtitleLanguage",
+              "title": "Subtitle Language",
+              "type": "subtitleLanguage"
+            },
+            {
+              "key": "audioLanguage",
+              "title": "Audio Language",
+              "type": "audioLanguage"
+            },
+            {
+              "key": "inProgress",
+              "title": "In Progress",
+              "type": "boolean"
+            },
+            {
+              "key": "trash",
+              "title": "Trash",
+              "type": "boolean"
+            },
+            {
+              "key": "label",
+              "title": "Label",
+              "type": "tag"
+            }
+          ]
+        },
+        {
+          "key": "/library/sections/1/folder",
+          "type": "folder",
+          "title": "Folders",
+          "active": false
+        }
+      ],
+      "FieldType": [
+        {
+          "type": "tag",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is"
+            },
+            {
+              "key": "!=",
+              "title": "is not"
+            }
+          ]
+        },
+        {
+          "type": "integer",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is"
+            },
+            {
+              "key": "!=",
+              "title": "is not"
+            },
+            {
+              "key": ">>=",
+              "title": "is greater than"
+            },
+            {
+              "key": "<<=",
+              "title": "is less than"
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "contains"
+            },
+            {
+              "key": "!=",
+              "title": "does not contain"
+            },
+            {
+              "key": "==",
+              "title": "is"
+            },
+            {
+              "key": "!==",
+              "title": "is not"
+            },
+            {
+              "key": "<=",
+              "title": "begins with"
+            },
+            {
+              "key": ">=",
+              "title": "ends with"
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is true"
+            },
+            {
+              "key": "!=",
+              "title": "is false"
+            }
+          ]
+        },
+        {
+          "type": "date",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is"
+            },
+            {
+              "key": "!=",
+              "title": "is not"
+            },
+            {
+              "key": "<<=",
+              "title": "is before"
+            },
+            {
+              "key": ">>=",
+              "title": "is after"
+            }
+          ]
+        },
+        {
+          "type": "subtitleLanguage",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is"
+            },
+            {
+              "key": "!=",
+              "title": "is not"
+            }
+          ]
+        },
+        {
+          "type": "audioLanguage",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is"
+            },
+            {
+              "key": "!=",
+              "title": "is not"
+            }
+          ]
+        },
+        {
+          "type": "resolution",
+          "Operator": [
+            {
+              "key": "=",
+              "title": "is"
+            }
+          ]
+        }
+      ]
+    },
+    "Metadata": [
+      {
+        "ratingKey": "2",
+        "key": "/library/metadata/2",
+        "guid": "com.plexapp.agents.themoviedb://10378?lang=en",
+        "studio": "Blender Foundation",
+        "type": "movie",
+        "title": "Big Buck Bunny, Sunflower version",
+        "summary": "Follow a day of the life of Big Buck Bunny when he meets three bullying rodents: Frank, Rinky, and Gamera. The rodents amuse themselves by harassing helpless creatures by throwing fruits, nuts and rocks at them. After the deaths of two of Bunny's favorite butterflies, and an offensive attack on Bunny himself, Bunny sets aside his gentle nature and orchestrates a complex plan for revenge.",
+        "rating": 6.2,
+        "year": 2008,
+        "thumb": "/library/metadata/2/thumb/1605370444",
+        "art": "/library/metadata/2/art/1605370444",
+        "duration": 634533,
+        "originallyAvailableAt": "2008-04-10",
+        "addedAt": 1605369964,
+        "updatedAt": 1605370444,
+        "Media": [
+          {
+            "id": 2,
+            "duration": 634533,
+            "bitrate": 3481,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "ac3",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "NTSC",
+            "optimizedForStreaming": 1,
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 2,
+                "key": "/library/parts/2/1605369964/file.mp4",
+                "duration": 634533,
+                "file": "/movies/bbb_sunflower_1080p_30fps_normal.mp4",
+                "size": 276134947,
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Animation"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "Sacha Goedegebure"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "Netherlands"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Blender Foundation 2008"
+          },
+          {
+            "tag": "Janus Bager Kristensen 2013"
+          }
+        ]
+      },
+      {
+        "ratingKey": "1",
+        "key": "/library/metadata/1",
+        "guid": "com.plexapp.agents.imdb://tt0807840?lang=en",
+        "studio": "Blender Foundation",
+        "type": "movie",
+        "title": "Elephants Dream",
+        "summary": "Elephants Dream is the story of two strange characters exploring a capricious and seemingly infinite machine. The elder, Proog, acts as a tour-guide and protector, happily showing off the sights and dangers of the machine to his initially curious but increasingly skeptical protege Emo. As their journey unfolds we discover signs that the machine is not all Proog thinks it is, and his guiding takes on a more desperate aspect.  Elephants Dream is a story about communication and fiction, made purposefully open-ended as the world’s first 3D animated “Open movie”. The film itself is released under the Creative Commons license, along with the entirety of the production files used to make it (roughly 7 Gigabytes of data). The software used to make the movie is the free/open source animation suite Blender along with other open source software, thus allowing the movie to be remade, remixed and re-purposed with only a computer and the data on the DVD or download.",
+        "rating": 5.8,
+        "year": 2006,
+        "thumb": "/library/metadata/1/thumb/1605370466",
+        "art": "/library/metadata/1/art/1605370466",
+        "duration": 653848,
+        "originallyAvailableAt": "2006-03-24",
+        "addedAt": 1414975419,
+        "updatedAt": 1605370466,
+        "Media": [
+          {
+            "id": 1,
+            "duration": 653848,
+            "bitrate": 830,
+            "width": 640,
+            "height": 360,
+            "aspectRatio": 1.78,
+            "audioChannels": 2,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "sd",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "constrained baseline",
+            "Part": [
+              {
+                "id": 1,
+                "key": "/library/parts/1/1414975419/file.mp4",
+                "duration": 653848,
+                "file": "/movies/ed_hd.mp4",
+                "size": 67801890,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "constrained baseline"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Animation"
+          },
+          {
+            "tag": "Science Fiction"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "Bassam Kurdali"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Bassam Kurdali"
+          },
+          {
+            "tag": "Andreas Goralczyk"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "Netherlands"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Tygo Gernandt"
+          },
+          {
+            "tag": "Cas Jansen"
+          }
+        ]
+      }
+    ]
+  }
+}
