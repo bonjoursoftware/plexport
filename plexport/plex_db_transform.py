@@ -42,7 +42,11 @@ def _transform(film: Dict[Any, Any]) -> Dict[str, str]:
 
 
 def _build_title(film: Dict[Any, Any]) -> str:
-    return f"{film.get('title')} ({film.get('year')})"
+    return f"{film.get('title')} ({film.get('year')}) ({_build_directors(film.get('Director'))})"
+
+
+def _build_directors(directors: List[Dict[str, str]]) -> str:
+    return ", ".join(list(map(lambda director: director["tag"], directors))) if directors else ""
 
 
 def _build_notes(film: Dict[Any, Any]) -> str:
