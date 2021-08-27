@@ -19,5 +19,5 @@ Bonjour Software's Plexport is a command-line tool that can perform ETL operatio
 
 - Python 3
 - Pytest
-- Pipenv
+- Poetry
 - Docker
