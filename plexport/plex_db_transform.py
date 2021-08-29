@@ -42,11 +42,11 @@ def _transform(film: Dict[Any, Any]) -> Dict[str, str]:
 
 
 def _build_title(film: Dict[Any, Any]) -> str:
-    return f"{film.get('title')} ({film.get('year')}) ({_build_directors(film.get('Director'))})"
+    return f"{film.get('title')} ({film.get('year')}) ({_build_people(film.get('Director'))}) ({_build_people(film.get('Role'))})"
 
 
-def _build_directors(directors: List[Dict[str, str]]) -> str:
-    return ", ".join(list(map(lambda director: director["tag"], directors))) if directors else ""
+def _build_people(people: List[Dict[str, str]]) -> str:
+    return ", ".join([person["tag"] for person in people]) if people else ""
 
 
 def _build_notes(film: Dict[Any, Any]) -> str:
@@ -81,7 +81,11 @@ def _build_size(size: int) -> str:
 
 
 def _build_tags(film: Dict[Any, Any]) -> List[str]:
-    return ["all", film.get("Media")[0].get("videoResolution")]
+    return [
+        "all",
+        f"{film.get('Media')[0].get('videoResolution')}",
+        "watched" if film.get("lastViewedAt") else "unwatched",
+    ]
 
 
 def _build_imdb_ref(guid: str) -> str:

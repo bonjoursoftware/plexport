@@ -29,15 +29,15 @@ def test_transform_plex_db() -> None:
         plex_db_export = json.load(plex_db_export)
     assert transform_plex_db(plex_db_export) == [
         {
-            "name": "Big Buck Bunny, Sunflower version (2008) (Sacha Goedegebure)",
+            "name": "Big Buck Bunny, Sunflower version (2008) (Sacha Goedegebure) (Blender Foundation 2008, Janus Bager Kristensen 2013)",
             "notes": "0h10m34s - 3.5Mbps h264 high - 6ch ac3 - 276.1MB /movies/bbb_sunflower_1080p_30fps_normal.mp4",
-            "tags": ["all", "1080"],
+            "tags": ["all", "1080", "unwatched"],
             "ref": "https://www.themoviedb.org/movie/10378/",
         },
         {
-            "name": "Elephants Dream (2006) (Bassam Kurdali)",
+            "name": "Elephants Dream (2006) (Bassam Kurdali) (Tygo Gernandt, Cas Jansen)",
             "notes": "0h10m53s - 0.8Mbps h264 constrained baseline - 2ch aac lc - 67.8MB /movies/ed_hd.mp4",
-            "tags": ["all", "sd"],
+            "tags": ["all", "sd", "watched"],
             "ref": "https://www.imdb.com/title/tt0807840/",
         },
     ]
