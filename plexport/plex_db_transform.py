@@ -2,7 +2,7 @@
 #
 # https://github.com/bonjoursoftware/plexport
 #
-# Copyright (C) 2020 Bonjour Software Limited
+# Copyright (C) 2020 - 2021 Bonjour Software Limited
 #
 # https://bonjoursoftware.com/
 #
@@ -19,17 +19,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see
 # https://github.com/bonjoursoftware/plexport/blob/master/LICENSE
+#
 import logging
 import re
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, Union
 
 
-def transform_plex_db(plex_db_export: Dict[Any, Any]) -> List[Dict[str, str]]:
-    return [_transform(film) for film in plex_db_export["MediaContainer"]["Metadata"]]
+def transform_plex_db(plex_db_export: Dict[str, Any]) -> List[Dict[str, Union[str, List[str]]]]:
+    return list(filter(None, [_transform(film) for film in plex_db_export["MediaContainer"]["Metadata"]]))
 
 
-def _transform(film: Dict[Any, Any]) -> Dict[str, str]:
+def _transform(film: Dict[str, Any]) -> Optional[Dict[str, Union[str, List[str]]]]:
     try:
         return {
             "name": _build_title(film),
@@ -39,19 +40,23 @@ def _transform(film: Dict[Any, Any]) -> Dict[str, str]:
         }
     except Exception as error:
         logging.warning(f"unable to process film [{film['title']}]: {error}")
+        return None
 
 
 def _build_title(film: Dict[Any, Any]) -> str:
-    return f"{film.get('title')} ({film.get('year')}) ({_build_people(film.get('Director'))}) ({_build_people(film.get('Role'))})"
+    return (
+        f"{film.get('title')} ({film.get('year')}) ({_build_people(film.get('Director'))}) "
+        f"({_build_people(film.get('Role'))})"
+    )
 
 
-def _build_people(people: List[Dict[str, str]]) -> str:
+def _build_people(people: Optional[List[Dict[str, str]]]) -> str:
     return ", ".join([person["tag"] for person in people]) if people else ""
 
 
 def _build_notes(film: Dict[Any, Any]) -> str:
-    media = film.get("Media")[0]
-    part = media.get("Part")[0]
+    media = film["Media"][0]
+    part = media["Part"][0]
     return (
         f"{_build_duration(film)} - "
         f"{_build_bitrate(film)} {media.get('videoCodec')} {media.get('videoProfile')} - "
@@ -61,7 +66,7 @@ def _build_notes(film: Dict[Any, Any]) -> str:
 
 
 def _build_duration(film: Dict[Any, Any]) -> str:
-    duration = film.get("Media")[0].get("duration")
+    duration = film["Media"][0]["duration"]
     h = duration // 3_600_000
     m = duration % 3_600_000 // 60_000
     s = duration % 3_600_000 % 60_000 / 1_000
@@ -69,7 +74,7 @@ def _build_duration(film: Dict[Any, Any]) -> str:
 
 
 def _build_bitrate(film: Dict[Any, Any]) -> str:
-    return "%.1fMbps" % (film.get("Media")[0].get("bitrate") / 1_000,)
+    return "%.1fMbps" % (film["Media"][0]["bitrate"] / 1_000,)
 
 
 def _build_audio_profile(audio_profile: str) -> str:
@@ -83,19 +88,21 @@ def _build_size(size: int) -> str:
 def _build_tags(film: Dict[Any, Any]) -> List[str]:
     return [
         "all",
-        f"{film.get('Media')[0].get('videoResolution')}",
+        f"{film['Media'][0]['videoResolution']}",
         "watched" if film.get("lastViewedAt") else "unwatched",
     ]
 
 
 def _build_imdb_ref(guid: str) -> str:
-    imdb_id = re.search("tt\\d+", guid).group()
-    return f"https://www.imdb.com/title/{imdb_id}/"
+    match = re.search("tt\\d+", guid)
+    imdb_id = match.group() if match else None
+    return f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else _build_unsupported_ref(guid)
 
 
 def _build_themoviedb_ref(guid: str) -> str:
-    themoviedb_id = re.search("\\d+", guid).group()
-    return f"https://www.themoviedb.org/movie/{themoviedb_id}/"
+    match = re.search("\\d+", guid)
+    themoviedb_id = match.group() if match else None
+    return f"https://www.themoviedb.org/movie/{themoviedb_id}/" if themoviedb_id else _build_unsupported_ref(guid)
 
 
 def _build_unsupported_ref(guid: str) -> str:
@@ -110,6 +117,7 @@ _agents_ref_map = {
 
 
 def _build_ref(film: Dict[Any, Any]) -> str:
-    guid = film.get("guid")
-    agent = re.search("^\\S+(?=:)", guid).group()
+    guid = film["guid"]
+    match = re.search("^\\S+(?=:)", guid)
+    agent = match.group() if match else None
     return _agents_ref_map.get(agent, _build_unsupported_ref)(guid)

@@ -2,7 +2,7 @@
 #
 # https://github.com/bonjoursoftware/plexport
 #
-# Copyright (C) 2020 Bonjour Software Limited
+# Copyright (C) 2020 - 2021 Bonjour Software Limited
 #
 # https://bonjoursoftware.com/
 #
@@ -19,6 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see
 # https://github.com/bonjoursoftware/plexport/blob/master/LICENSE
+#
 import os
 import requests
 import urllib3
@@ -35,7 +36,7 @@ class PlexFilmsExtractor:
     def extract_plex_films(self) -> Dict[Any, Any]:
         page_offset = 0
         page_size = 100
-        token = os.getenv("PLEX_API_TOKEN") if "PLEX_API_TOKEN" in os.environ else input("Plex API token: ")
+        token = os.getenv("PLEX_API_TOKEN") or input("Plex API token: ")
         plex_films = self._extract_films_page(token, page_offset, page_size)
         while self._has_more_films(plex_films, page_offset, page_size):
             page_offset += page_size
@@ -55,11 +56,11 @@ class PlexFilmsExtractor:
             "Accept": "application/json",
             "Accept-Language": "en-GB",
         }
-        return requests.get(url, headers=headers, verify=False).json()
+        return dict(requests.get(url, headers=headers, verify=False).json())
 
     @staticmethod
     def _has_more_films(plex_db: Dict[Any, Any], page_offset: int, page_size: int) -> bool:
-        return plex_db["MediaContainer"]["totalSize"] > (page_offset / page_size + 1) * page_size
+        return int(plex_db["MediaContainer"]["totalSize"]) > (page_offset / page_size + 1) * page_size
 
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)

@@ -2,7 +2,7 @@
 #
 # https://github.com/bonjoursoftware/plexport
 #
-# Copyright (C) 2020 Bonjour Software Limited
+# Copyright (C) 2020 - 2021 Bonjour Software Limited
 #
 # https://bonjoursoftware.com/
 #
@@ -19,19 +19,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see
 # https://github.com/bonjoursoftware/plexport/blob/master/LICENSE
+#
 import json
 
+from typing import Any, Dict
 from unittest.mock import patch, Mock
 
 from plexport.plex_films_extractor import PlexFilmsExtractor
 
 
-def _load_json_file(index: int):
+def _load_json_file(index: int) -> Dict[str, Any]:
     with open(f"./tests/resources/test_plex_films_export_page_0{index}.json", "r") as json_file:
-        return json.load(json_file)
+        return dict(json.load(json_file))
 
 
-def test_plex_films_extractor(monkeypatch) -> None:
+def test_plex_films_extractor(monkeypatch: Any) -> None:
     mock_get = Mock(
         side_effect=[
             Mock(json=Mock(return_value=_load_json_file(1))),

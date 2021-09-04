@@ -3,7 +3,7 @@
 #
 # https://github.com/bonjoursoftware/plexport
 #
-# Copyright (C) 2020 Bonjour Software Limited
+# Copyright (C) 2020 - 2021 Bonjour Software Limited
 #
 # https://bonjoursoftware.com/
 #

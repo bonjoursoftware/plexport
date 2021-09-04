@@ -2,7 +2,7 @@
 #
 # https://github.com/bonjoursoftware/plexport
 #
-# Copyright (C) 2020 Bonjour Software Limited
+# Copyright (C) 2020 - 2021 Bonjour Software Limited
 #
 # https://bonjoursoftware.com/
 #
@@ -19,17 +19,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see
 # https://github.com/bonjoursoftware/plexport/blob/master/LICENSE
+#
 import json
 
 from plexport.plex_db_transform import transform_plex_db
 
 
 def test_transform_plex_db() -> None:
-    with open("./tests/resources/test_plex_db_export.json", "r") as plex_db_export:
-        plex_db_export = json.load(plex_db_export)
+    with open("./tests/resources/test_plex_db_export.json", "r") as plex_db_export_file:
+        plex_db_export = json.load(plex_db_export_file)
     assert transform_plex_db(plex_db_export) == [
         {
-            "name": "Big Buck Bunny, Sunflower version (2008) (Sacha Goedegebure) (Blender Foundation 2008, Janus Bager Kristensen 2013)",
+            "name": (
+                "Big Buck Bunny, Sunflower version (2008) (Sacha Goedegebure) "
+                "(Blender Foundation 2008, Janus Bager Kristensen 2013)"
+            ),
             "notes": "0h10m34s - 3.5Mbps h264 high - 6ch ac3 - 276.1MB /movies/bbb_sunflower_1080p_30fps_normal.mp4",
             "tags": ["all", "1080", "unwatched"],
             "ref": "https://www.themoviedb.org/movie/10378/",
