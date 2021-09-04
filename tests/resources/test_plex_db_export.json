@@ -721,7 +721,88 @@
             "tag": "Cas Jansen"
           }
         ]
-      }
+      },
+      {
+        "ratingKey": "1",
+        "key": "/library/metadata/1",
+        "guid": "plex://movie/whatever",
+        "studio": "Some Studio",
+        "type": "movie",
+        "title": "A fantastic test film",
+        "summary": "This isn't a real film, but rather some test data used to trigger a specific test scenario!",
+        "rating": 9.9,
+        "year": 2999,
+        "duration": 123456,
+        "Media": [
+          {
+            "id": 1,
+            "duration": 123456,
+            "bitrate": 2048,
+            "width": 640,
+            "height": 360,
+            "aspectRatio": 1.78,
+            "audioChannels": 2,
+            "audioCodec": "cod",
+            "videoCodec": "h999",
+            "videoResolution": "hd",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "constrained baseline",
+            "Part": [
+              {
+                "id": 1,
+                "key": "/library/parts/1/1414975419/file.mp4",
+                "duration": 123456,
+                "file": "/movies/fantastic.mp4",
+                "size": 88645432,
+                "audioProfile": "pro",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "constrained baseline"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Animation"
+          },
+          {
+            "tag": "Science Fiction"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "Joe"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Paul"
+          },
+          {
+            "tag": "Sam"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "Neverland"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Bob"
+          },
+          {
+            "tag": "Ken"
+          }
+        ]
+      },
+      {"unexpected_entry": "what is that thing?"}
     ]
   }
 }

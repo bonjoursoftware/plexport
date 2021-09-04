@@ -23,6 +23,7 @@
 import logging
 import re
 
+from requests.utils import requote_uri
 from typing import Any, Dict, List, Optional, Union
 
 
@@ -39,7 +40,7 @@ def _transform(film: Dict[str, Any]) -> Optional[Dict[str, Union[str, List[str]]
             "ref": _build_ref(film),
         }
     except Exception as error:
-        logging.warning(f"unable to process film [{film['title']}]: {error}")
+        logging.warning(f"unable to process film [{film}]: {error}")
         return None
 
 
@@ -93,21 +94,21 @@ def _build_tags(film: Dict[Any, Any]) -> List[str]:
     ]
 
 
-def _build_imdb_ref(guid: str) -> str:
+def _build_imdb_ref(guid: str, title: str) -> str:
     match = re.search("tt\\d+", guid)
-    imdb_id = match.group() if match else None
-    return f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else _build_unsupported_ref(guid)
+    imdbid = match.group() if match else None
+    return f"https://www.imdb.com/title/{imdbid}/" if imdbid else _build_unsupported_ref(guid, title)
 
 
-def _build_themoviedb_ref(guid: str) -> str:
+def _build_themoviedb_ref(guid: str, title: str) -> str:
     match = re.search("\\d+", guid)
-    themoviedb_id = match.group() if match else None
-    return f"https://www.themoviedb.org/movie/{themoviedb_id}/" if themoviedb_id else _build_unsupported_ref(guid)
+    themoviedbid = match.group() if match else None
+    return f"https://www.themoviedb.org/movie/{themoviedbid}/" if themoviedbid else _build_unsupported_ref(guid, title)
 
 
-def _build_unsupported_ref(guid: str) -> str:
-    logging.warning(f"unsupported guid: {guid}")
-    return ""
+def _build_unsupported_ref(guid: str, title: str) -> str:
+    # alternative: https://www.themoviedb.org/search/movie?query=some%20filme%20title
+    return f"https://www.imdb.com/find?s=tt&q={requote_uri(title)}"
 
 
 _agents_ref_map = {
@@ -117,7 +118,7 @@ _agents_ref_map = {
 
 
 def _build_ref(film: Dict[Any, Any]) -> str:
-    guid = film["guid"]
+    guid, title = film["guid"], film["title"]
     match = re.search("^\\S+(?=:)", guid)
     agent = match.group() if match else None
-    return _agents_ref_map.get(agent, _build_unsupported_ref)(guid)
+    return _agents_ref_map.get(agent, _build_unsupported_ref)(guid, title)
