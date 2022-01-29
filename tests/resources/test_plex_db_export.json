@@ -765,7 +765,8 @@
                 "videoProfile": "constrained baseline"
               }
             ]
-          }
+          },
+          {}
         ],
         "Genre": [
           {

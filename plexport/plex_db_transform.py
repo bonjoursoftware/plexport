@@ -91,7 +91,7 @@ def _build_tags(film: Dict[Any, Any]) -> List[str]:
         "all",
         f"{film['Media'][0]['videoResolution']}",
         "watched" if film.get("lastViewedAt") else "unwatched",
-    ]
+    ] + (["dupe"] if len(film["Media"]) > 1 else [])
 
 
 def _build_imdb_ref(guid: str, title: str) -> str:
