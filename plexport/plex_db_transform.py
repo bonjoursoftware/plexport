@@ -120,5 +120,5 @@ _agents_ref_map = {
 def _build_ref(film: Dict[Any, Any]) -> str:
     guid, title = film["guid"], film["title"]
     match = re.search("^\\S+(?=:)", guid)
-    agent = match.group() if match else None
+    agent = match.group() if match else ""
     return _agents_ref_map.get(agent, _build_unsupported_ref)(guid, title)
