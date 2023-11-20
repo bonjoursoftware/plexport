@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: initialise Bonjour Software Limited build-tools
+        run: make init
+      - name: check code style and static typing
+        run: make code-check
+      - name: check code formatting
+        run: make fmt-check
+      - name: check markdown formatting
+        run: make md-check
+      - name: run test suite and check test coverage
+        run: make test
