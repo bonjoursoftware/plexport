@@ -46,13 +46,16 @@ def _transform(film: Dict[str, Any]) -> Optional[Dict[str, Union[str, List[str]]
 
 def _build_title(film: Dict[Any, Any]) -> str:
     return (
-        f"{film.get('title')} ({film.get('year')}) ({_build_people(film.get('Director'))}) "
-        f"({_build_people(film.get('Role'))})"
+        f"{film.get('title')} "
+        f"({film.get('year')}) "
+        f"({_build_tag_enum(film.get('Director'))}) "
+        f"({_build_tag_enum(film.get('Role'))}) "
+        f"({_build_tag_enum(film.get('Genre'))})"
     )
 
 
-def _build_people(people: Optional[List[Dict[str, str]]]) -> str:
-    return ", ".join([person["tag"] for person in people]) if people else ""
+def _build_tag_enum(items: Optional[List[Dict[str, str]]]) -> str:
+    return ", ".join([item["tag"] for item in items]) if items else "unspecified"
 
 
 def _build_notes(film: Dict[Any, Any]) -> str:

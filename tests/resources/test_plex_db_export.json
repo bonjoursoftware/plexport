@@ -768,14 +768,6 @@
           },
           {}
         ],
-        "Genre": [
-          {
-            "tag": "Animation"
-          },
-          {
-            "tag": "Science Fiction"
-          }
-        ],
         "Director": [
           {
             "tag": "Joe"
