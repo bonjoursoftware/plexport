@@ -22,32 +22,45 @@
 # https://github.com/bonjoursoftware/plexport/blob/master/LICENSE
 import argparse
 import json
+import os
 
-from typing import Any, Dict
+from typing import Any, Dict, List, Union
+
+from pymongo import MongoClient
 
 from plexport.plex_db_transform import transform_plex_db
 from plexport.plex_films_extractor import PlexFilmsExtractor
+from plexport.plex_films_mycollections_importer import PlexFilmsMyCollectionsImporter
 
 
 def main(args: argparse.Namespace) -> None:
-    plex_films = _load_plex_db_export(args.export) if args.export else _extract_plex_films(host=args.host)
-    films = transform_plex_db(plex_films)
+    films = transform_plex_db(_extract_plex_films())
     print(json.dumps(films))
+    if args.load:
+        _import_plex_films(films)
 
 
-def _load_plex_db_export(path: str) -> Dict[Any, Any]:
-    with open(path, "r") as plex_db_export:
-        return json.load(plex_db_export)
+def _extract_plex_films() -> Dict[Any, Any]:
+    plex_host = os.getenv("PLEX_HOST") or input("Plex host address: ")
+    return PlexFilmsExtractor(plex_host).extract_plex_films()
 
 
-def _extract_plex_films(host: str) -> Dict[Any, Any]:
-    return PlexFilmsExtractor(host=host).extract_plex_films()
+def _import_plex_films(films: List[Dict[str, Union[str, List[str]]]]) -> None:
+    mongo_db = os.getenv("MONGO_DATABASE") or input("Database name of a MyCollections MongoDB instance: ")
+    mongo_col = os.getenv("MONGO_COLLECTION") or input("Collection name of a MyCollections MongoDB instance: ")
+    return PlexFilmsMyCollectionsImporter(_build_mongo_client(), mongo_db, mongo_col).import_plex_films(films)
+
+
+def _build_mongo_client() -> MongoClient:
+    mongo_host = os.getenv("MONGO_HOST") or input("Host address of a MyCollections MongoDB instance: ")
+    mongo_user = os.getenv("MONGO_USER") or input("Username of a MyCollections MongoDB instance: ")
+    mongo_password = os.getenv("MONGO_PASSWORD") or input("Password of a MyCollections MongoDB instance: ")
+    return MongoClient(f"mongodb+srv://{mongo_user}:{mongo_password}@{mongo_host}/?retryWrites=true&w=majority")
 
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Plexport: Plex Media Server database ETL - Bonjour Software Limited")
-    parser.add_argument("--host", type=str, help="Plex server IP address")
-    parser.add_argument("--export", type=str, help="Path to a Plex database export; extract step skipped if present")
+    parser.add_argument("--load", action="store_true", help="Import films in a MyCollections instance if present")
     return parser.parse_args()
 
 
