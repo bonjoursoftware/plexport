@@ -48,6 +48,6 @@ def test_transform_plex_db() -> None:
             "name": "A fantastic test film (2999) (Joe) (Bob, Ken) (unspecified)",
             "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
             "tags": ["all", "hd", "unwatched", "dupe"],
-            "ref": "https://www.imdb.com/find?s=tt&q=A%20fantastic%20test%20film",
+            "ref": "https://www.imdb.com/search/title/?title=A%20fantastic%20test%20film&release_date=2999-01-01,",
         },
     ]

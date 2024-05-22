@@ -97,21 +97,25 @@ def _build_tags(film: Dict[Any, Any]) -> List[str]:
     ] + (["dupe"] if len(film["Media"]) > 1 else [])
 
 
-def _build_imdb_ref(guid: str, title: str) -> str:
+def _build_imdb_ref(guid: str, title: str, year: int) -> str:
     match = re.search("tt\\d+", guid)
     imdbid = match.group() if match else None
-    return f"https://www.imdb.com/title/{imdbid}/" if imdbid else _build_unsupported_ref(guid, title)
+    return f"https://www.imdb.com/title/{imdbid}/" if imdbid else _build_unsupported_ref(guid, title, year)
 
 
-def _build_themoviedb_ref(guid: str, title: str) -> str:
+def _build_themoviedb_ref(guid: str, title: str, year: int) -> str:
     match = re.search("\\d+", guid)
     themoviedbid = match.group() if match else None
-    return f"https://www.themoviedb.org/movie/{themoviedbid}/" if themoviedbid else _build_unsupported_ref(guid, title)
+    return (
+        f"https://www.themoviedb.org/movie/{themoviedbid}/"
+        if themoviedbid
+        else _build_unsupported_ref(guid, title, year)
+    )
 
 
-def _build_unsupported_ref(guid: str, title: str) -> str:
+def _build_unsupported_ref(guid: str, title: str, year: int) -> str:
     # alternative: https://www.themoviedb.org/search/movie?query=some%20filme%20title
-    return f"https://www.imdb.com/find?s=tt&q={requote_uri(title)}"
+    return f"https://www.imdb.com/search/title/?title={requote_uri(title)}&release_date={year}-01-01,"
 
 
 _agents_ref_map = {
@@ -121,7 +125,7 @@ _agents_ref_map = {
 
 
 def _build_ref(film: Dict[Any, Any]) -> str:
-    guid, title = film["guid"], film["title"]
+    guid, title, year = film["guid"], film["title"], film["year"]
     match = re.search("^\\S+(?=:)", guid)
     agent = match.group() if match else ""
-    return _agents_ref_map.get(agent, _build_unsupported_ref)(guid, title)
+    return _agents_ref_map.get(agent, _build_unsupported_ref)(guid, title, year)
