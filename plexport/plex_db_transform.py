@@ -47,7 +47,7 @@ def _transform(film: Dict[str, Any]) -> Optional[Dict[str, Union[str, List[str]]
 def _build_title(film: Dict[Any, Any]) -> str:
     return (
         f"{film.get('title')} "
-        f"({film.get('year')}) "
+        f"({film.get('year', 'year unknown')}) "
         f"({_build_tag_enum(film.get('Director'))}) "
         f"({_build_tag_enum(film.get('Role'))}) "
         f"({_build_tag_enum(film.get('Genre'))})"
@@ -115,7 +115,11 @@ def _build_themoviedb_ref(guid: str, title: str, year: int) -> str:
 
 def _build_unsupported_ref(guid: str, title: str, year: int) -> str:
     # alternative: https://www.themoviedb.org/search/movie?query=some%20filme%20title
-    return f"https://www.imdb.com/search/title/?title={requote_uri(title)}&release_date={year}-01-01,"
+    return (
+        f"https://www.imdb.com/search/title/?title={requote_uri(title)}&release_date={year}-01-01,"
+        if year
+        else f"https://www.imdb.com/search/title/?title={requote_uri(title)}"
+    )
 
 
 _agents_ref_map = {
@@ -125,7 +129,7 @@ _agents_ref_map = {
 
 
 def _build_ref(film: Dict[Any, Any]) -> str:
-    guid, title, year = film["guid"], film["title"], film["year"]
+    guid, title, year = film["guid"], film["title"], film.get("year", 0)
     match = re.search("^\\S+(?=:)", guid)
     agent = match.group() if match else ""
     return _agents_ref_map.get(agent, _build_unsupported_ref)(guid, title, year)

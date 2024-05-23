@@ -50,4 +50,10 @@ def test_transform_plex_db() -> None:
             "tags": ["all", "hd", "unwatched", "dupe"],
             "ref": "https://www.imdb.com/search/title/?title=A%20fantastic%20test%20film&release_date=2999-01-01,",
         },
+        {
+            "name": "A film with no year (year unknown) (Joe) (Bob, Ken) (unspecified)",
+            "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
+            "tags": ["all", "hd", "unwatched", "dupe"],
+            "ref": "https://www.imdb.com/search/title/?title=A%20film%20with%20no%20year",
+        },
     ]
