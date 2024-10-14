@@ -30,12 +30,15 @@ def test_transform_plex_db() -> None:
         plex_db_export = json.load(plex_db_export_file)
     assert transform_plex_db(plex_db_export) == [
         {
-            "name": (
-                "Big Buck Bunny, Sunflower version (2008) (Sacha Goedegebure) "
-                "(Blender Foundation 2008, Janus Bager Kristensen 2013) (Animation)"
-            ),
+            "name": "Big Buck Bunny (2008) (Sacha Goedegebure) " "(Blender Foundation 2008, Janus Bager Kristensen 2013) (Animation)",
             "notes": "0h10m34s - 3.5Mbps h264 high - 6ch ac3 - 276.1MB /movies/bbb_sunflower_1080p_30fps_normal.mp4",
             "tags": ["all", "1080", "unwatched"],
+            "ref": "https://www.themoviedb.org/movie/10378/",
+        },
+        {
+            "name": "2020-11-14 - Big Buck Bunny (2008) (Sacha Goedegebure) (Blender Foundation 2008, Janus Bager Kristensen 2013) (Animation)",
+            "notes": "0h10m34s - 3.5Mbps h264 high - 6ch ac3 - 276.1MB /movies/bbb_sunflower_1080p_30fps_normal.mp4",
+            "tags": ["_added_dates"],
             "ref": "https://www.themoviedb.org/movie/10378/",
         },
         {
@@ -45,15 +48,39 @@ def test_transform_plex_db() -> None:
             "ref": "https://www.imdb.com/title/tt0807840/",
         },
         {
+            "name": "2014-11-03 - Elephants Dream (2006) (Bassam Kurdali) (Tygo Gernandt, Cas Jansen) (Animation, Science Fiction)",
+            "notes": "0h10m53s - 0.8Mbps h264 constrained baseline - 2ch aac lc - 67.8MB /movies/ed_hd.mp4",
+            "tags": ["_added_dates"],
+            "ref": "https://www.imdb.com/title/tt0807840/",
+        },
+        {
+            "name": "2021-04-10 - Elephants Dream (2006) (Bassam Kurdali) (Tygo Gernandt, Cas Jansen) (Animation, Science Fiction)",
+            "notes": "0h10m53s - 0.8Mbps h264 constrained baseline - 2ch aac lc - 67.8MB /movies/ed_hd.mp4",
+            "tags": ["_watched_dates"],
+            "ref": "https://www.imdb.com/title/tt0807840/",
+        },
+        {
             "name": "A fantastic test film (2999) (Joe) (Bob, Ken) (unspecified)",
             "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
             "tags": ["all", "hd", "unwatched", "dupe"],
             "ref": "https://www.imdb.com/search/title/?title=A%20fantastic%20test%20film&release_date=2999-01-01,",
         },
         {
+            "name": "2014-11-03 - A fantastic test film (2999) (Joe) (Bob, Ken) (unspecified)",
+            "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
+            "tags": ["_added_dates"],
+            "ref": "https://www.imdb.com/search/title/?title=A%20fantastic%20test%20film&release_date=2999-01-01,",
+        },
+        {
             "name": "A film with no year (year unknown) (Joe) (Bob, Ken) (unspecified)",
             "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
             "tags": ["all", "hd", "unwatched", "dupe"],
+            "ref": "https://www.imdb.com/search/title/?title=A%20film%20with%20no%20year",
+        },
+        {
+            "name": "2014-10-28 - A film with no year (year unknown) (Joe) (Bob, Ken) (unspecified)",
+            "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
+            "tags": ["_added_dates"],
             "ref": "https://www.imdb.com/search/title/?title=A%20film%20with%20no%20year",
         },
     ]

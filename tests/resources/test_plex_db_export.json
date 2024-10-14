@@ -570,7 +570,7 @@
         "guid": "com.plexapp.agents.themoviedb://10378?lang=en",
         "studio": "Blender Foundation",
         "type": "movie",
-        "title": "Big Buck Bunny, Sunflower version",
+        "title": "Big Buck Bunny",
         "summary": "Follow a day of the life of Big Buck Bunny when he meets three bullying rodents: Frank, Rinky, and Gamera. The rodents amuse themselves by harassing helpless creatures by throwing fruits, nuts and rocks at them. After the deaths of two of Bunny's favorite butterflies, and an offensive attack on Bunny himself, Bunny sets aside his gentle nature and orchestrates a complex plan for revenge.",
         "rating": 6.2,
         "year": 2008,
@@ -733,6 +733,7 @@
         "rating": 9.9,
         "year": 2999,
         "duration": 123456,
+        "addedAt": 1414975419,
         "Media": [
           {
             "id": 1,
@@ -805,6 +806,7 @@
         "summary": "This isn't a real film, but rather some test data used to trigger a specific test scenario!",
         "rating": 9.9,
         "duration": 123456,
+        "addedAt": 1414455419,
         "Media": [
           {
             "id": 1,
