@@ -40,9 +40,7 @@ class PlexFilmsExtractor:
         plex_films = self._extract_films_page(token, page_offset, page_size)
         while self._has_more_films(plex_films, page_offset, page_size):
             page_offset += page_size
-            plex_films["MediaContainer"]["Metadata"].extend(
-                self._extract_films_page(token, page_offset, page_size)["MediaContainer"]["Metadata"]
-            )
+            plex_films["MediaContainer"]["Metadata"].extend(self._extract_films_page(token, page_offset, page_size)["MediaContainer"]["Metadata"])
         return plex_films
 
     def _extract_films_page(self, plex_token: str, page_offset: int, page_size: int) -> Dict[Any, Any]:

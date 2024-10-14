@@ -23,22 +23,29 @@
 import logging
 import re
 
+from datetime import datetime
+from itertools import chain
 from requests.utils import requote_uri
 from typing import Any, Dict, List, Optional, Union
 
 
 def transform_plex_db(plex_db_export: Dict[str, Any]) -> List[Dict[str, Union[str, List[str]]]]:
-    return list(filter(None, [_transform(film) for film in plex_db_export["MediaContainer"]["Metadata"]]))
+    return list(chain.from_iterable(filter(None, [_transform(film) for film in plex_db_export["MediaContainer"]["Metadata"]])))
 
 
-def _transform(film: Dict[str, Any]) -> Optional[Dict[str, Union[str, List[str]]]]:
+def _transform(film: Dict[str, Any]) -> Optional[List[Dict[str, Union[str, List[str]]]]]:
     try:
-        return {
-            "name": _build_title(film),
-            "notes": _build_notes(film),
-            "tags": _build_tags(film),
-            "ref": _build_ref(film),
-        }
+        title, notes, ref = _build_title(film), _build_notes(film), _build_ref(film)
+        return list(
+            filter(
+                None,
+                [
+                    {"name": title, "notes": notes, "tags": _build_tags(film), "ref": ref},
+                    {"name": _with_added_date(title, film), "notes": notes, "tags": ["_added_dates"], "ref": ref},
+                    {"name": _with_watched_date(title, film), "notes": notes, "tags": ["_watched_dates"], "ref": ref} if film.get("lastViewedAt") else None,
+                ],
+            )
+        )
     except Exception as error:
         logging.warning(f"unable to process film [{film}]: {error}")
         return None
@@ -52,6 +59,14 @@ def _build_title(film: Dict[Any, Any]) -> str:
         f"({_build_tag_enum(film.get('Role'))}) "
         f"({_build_tag_enum(film.get('Genre'))})"
     )
+
+
+def _with_added_date(title: str, film: Dict[Any, Any]) -> str:
+    return f"{datetime.fromtimestamp(film['addedAt']).strftime('%Y-%m-%d')} - {title}"
+
+
+def _with_watched_date(title: str, film: Dict[Any, Any]) -> str:
+    return f"{datetime.fromtimestamp(film['lastViewedAt']).strftime('%Y-%m-%d')} - {title}"
 
 
 def _build_tag_enum(items: Optional[List[Dict[str, str]]]) -> str:
@@ -106,11 +121,7 @@ def _build_imdb_ref(guid: str, title: str, year: int) -> str:
 def _build_themoviedb_ref(guid: str, title: str, year: int) -> str:
     match = re.search("\\d+", guid)
     themoviedbid = match.group() if match else None
-    return (
-        f"https://www.themoviedb.org/movie/{themoviedbid}/"
-        if themoviedbid
-        else _build_unsupported_ref(guid, title, year)
-    )
+    return f"https://www.themoviedb.org/movie/{themoviedbid}/" if themoviedbid else _build_unsupported_ref(guid, title, year)
 
 
 def _build_unsupported_ref(guid: str, title: str, year: int) -> str:
