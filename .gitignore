@@ -127,3 +127,7 @@ dmypy.json
 
 # JetBrains
 .idea/
+
+# remark config
+.remarkrc
+.remarkignore
