@@ -6,6 +6,7 @@ license = "GPL-3.0-only"
 authors = ["Antoine <achatain@users.noreply.github.com>"]
 homepage = "https://bonjour.software"
 repository = "https://github.com/bonjoursoftware/plexport"
+package-mode = false
 
 [tool.poetry.dependencies]
 pymongo = "4.15.3"
