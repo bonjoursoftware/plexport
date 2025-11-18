@@ -107,7 +107,7 @@ def _build_size(size: int) -> str:
 def _build_tags(film: Dict[Any, Any]) -> List[str]:
     return [
         "all",
-        f"{film['Media'][0]['videoResolution']}",
+        f"res_{film['Media'][0]['videoResolution']}",
         "watched" if film.get("lastViewedAt") else "unwatched",
     ] + (["dupe"] if len(film["Media"]) > 1 else [])
 

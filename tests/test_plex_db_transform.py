@@ -32,7 +32,7 @@ def test_transform_plex_db() -> None:
         {
             "name": "Big Buck Bunny (2008) (Sacha Goedegebure) " "(Blender Foundation 2008, Janus Bager Kristensen 2013) (Animation)",
             "notes": "0h10m34s - 3.5Mbps h264 high - 6ch ac3 - 276.1MB /movies/bbb_sunflower_1080p_30fps_normal.mp4",
-            "tags": ["all", "1080", "unwatched"],
+            "tags": ["all", "res_1080", "unwatched"],
             "ref": "https://www.themoviedb.org/movie/10378/",
         },
         {
@@ -44,7 +44,7 @@ def test_transform_plex_db() -> None:
         {
             "name": "Elephants Dream (2006) (Bassam Kurdali) (Tygo Gernandt, Cas Jansen) (Animation, Science Fiction)",
             "notes": "0h10m53s - 0.8Mbps h264 constrained baseline - 2ch aac lc - 67.8MB /movies/ed_hd.mp4",
-            "tags": ["all", "sd", "watched"],
+            "tags": ["all", "res_sd", "watched"],
             "ref": "https://www.imdb.com/title/tt0807840/",
         },
         {
@@ -62,7 +62,7 @@ def test_transform_plex_db() -> None:
         {
             "name": "A fantastic test film (2999) (Joe) (Bob, Ken) (unspecified)",
             "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
-            "tags": ["all", "hd", "unwatched", "dupe"],
+            "tags": ["all", "res_hd", "unwatched", "dupe"],
             "ref": "https://www.imdb.com/search/title/?title=A%20fantastic%20test%20film&release_date=2999-01-01,",
         },
         {
@@ -74,7 +74,7 @@ def test_transform_plex_db() -> None:
         {
             "name": "A film with no year (year unknown) (Joe) (Bob, Ken) (unspecified)",
             "notes": "0h02m03s - 2.0Mbps h999 constrained baseline - 2ch cod pro - 88.6MB /movies/fantastic.mp4",
-            "tags": ["all", "hd", "unwatched", "dupe"],
+            "tags": ["all", "res_hd", "unwatched", "dupe"],
             "ref": "https://www.imdb.com/search/title/?title=A%20film%20with%20no%20year",
         },
         {
