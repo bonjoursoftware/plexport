@@ -1,0 +1,182 @@
+{
+  "MediaContainer": {
+    "size": 1,
+    "Metadata": [
+      {
+        "ratingKey": "4455",
+        "key": "/library/metadata/4455",
+        "guid": "plex://movie/111aaa1a1a11111111a1aaa1",
+        "slug": "film-1",
+        "studio": "studio-1",
+        "type": "movie",
+        "title": "The First Film",
+        "titleSort": "first film",
+        "librarySectionTitle": "Movies",
+        "librarySectionID": 1,
+        "librarySectionKey": "/library/sections/1",
+        "originalTitle": "The First Film",
+        "contentRating": "gb/PG",
+        "contentRatingAge": 8,
+        "summary": "The First Film. Ever. Yes.",
+        "rating": 8.9,
+        "audienceRating": 8.4,
+        "year": 2025,
+        "tagline": "The adventure of a lifetime.",
+        "thumb": "/library/metadata/4455/thumb/1111111111",
+        "art": "/library/metadata/4455/art/2222222222",
+        "duration": 5472546,
+        "originallyAvailableAt": "2025-11-19",
+        "addedAt": 1763399097,
+        "updatedAt": 1763399369,
+        "audienceRatingImage": "rottentomatoes://image.rating.upright",
+        "chapterSource": "media",
+        "ratingImage": "rottentomatoes://image.rating.ripe",
+        "Media": [
+          {
+            "id": 12345,
+            "duration": 5472546,
+            "bitrate": 6305,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "eac3",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mkv",
+            "videoFrameRate": "24p",
+            "videoProfile": "main",
+            "Part": [
+              {
+                "id": 22222,
+                "key": "/library/parts/22222/1212121212/file.mkv",
+                "duration": 5472546,
+                "file": "/media/films/the_first_film.mkv",
+                "size": 4313454976,
+                "container": "mkv",
+                "videoProfile": "main",
+                "Stream": [
+                  {
+                    "id": 11111,
+                    "streamType": 1,
+                    "default": true,
+                    "codec": "h264",
+                    "index": 0,
+                    "bitrate": 6305,
+                    "bitDepth": 8,
+                    "chromaLocation": "left",
+                    "chromaSubsampling": "4:2:0",
+                    "codedHeight": 1088,
+                    "codedWidth": 1920,
+                    "frameRate": {
+                      "source": "24.0",
+                      "parsedValue": 24
+                    },
+                    "hasScalingMatrix": false,
+                    "height": 1080,
+                    "level": 40,
+                    "profile": "main",
+                    "refFrames": 3,
+                    "scanType": "progressive",
+                    "width": 1920,
+                    "displayTitle": "1080p (H.264)",
+                    "extendedDisplayTitle": "1080p (H.264)"
+                  },
+                  {
+                    "id": 22222,
+                    "streamType": 2,
+                    "default": true,
+                    "codec": "eac3",
+                    "index": 1,
+                    "channels": 6,
+                    "bitrate": 768,
+                    "language": "French",
+                    "languageTag": "fr",
+                    "languageCode": "fra",
+                    "audioChannelLayout": "5.1(side)",
+                    "samplingRate": 48000,
+                    "displayTitle": "French (EAC3 5.1)",
+                    "extendedDisplayTitle": "French (EAC3 5.1)"
+                  },
+                  {
+                    "id": 33333,
+                    "streamType": 2,
+                    "selected": true,
+                    "codec": "eac3",
+                    "index": 2,
+                    "channels": 6,
+                    "bitrate": 768,
+                    "language": "English",
+                    "languageTag": "en",
+                    "languageCode": "eng",
+                    "audioChannelLayout": "5.1(side)",
+                    "original": true,
+                    "samplingRate": 48000,
+                    "displayTitle": "English (EAC3 5.1)",
+                    "extendedDisplayTitle": "English (EAC3 5.1)"
+                  },
+                  {
+                    "id": 44444,
+                    "streamType": 3,
+                    "default": true,
+                    "forced": true,
+                    "codec": "srt",
+                    "index": 3,
+                    "language": "French",
+                    "languageTag": "fr",
+                    "languageCode": "fra",
+                    "title": "French Forced",
+                    "displayTitle": "French Forced (SRT)",
+                    "extendedDisplayTitle": "French Forced (French SRT)"
+                  },
+                  {
+                    "id": 55555,
+                    "streamType": 3,
+                    "codec": "srt",
+                    "index": 4,
+                    "bitrate": 0,
+                    "language": "French",
+                    "languageTag": "fr",
+                    "languageCode": "fra",
+                    "title": "French",
+                    "displayTitle": "French (SRT)",
+                    "extendedDisplayTitle": "French (French SRT)"
+                  },
+                  {
+                    "id": 66666,
+                    "streamType": 3,
+                    "codec": "srt",
+                    "index": 5,
+                    "bitrate": 0,
+                    "language": "French",
+                    "languageTag": "fr",
+                    "languageCode": "fra",
+                    "hearingImpaired": true,
+                    "title": "French SDH",
+                    "displayTitle": "French SDH (SRT)",
+                    "extendedDisplayTitle": "French SDH (French SRT)"
+                  },
+                  {
+                    "id": 77777,
+                    "streamType": 3,
+                    "codec": "srt",
+                    "index": 6,
+                    "bitrate": 0,
+                    "language": "English",
+                    "languageTag": "en",
+                    "languageCode": "eng",
+                    "hearingImpaired": true,
+                    "original": true,
+                    "title": "English SDH",
+                    "displayTitle": "English SDH (SRT)",
+                    "extendedDisplayTitle": "English SDH (SRT)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

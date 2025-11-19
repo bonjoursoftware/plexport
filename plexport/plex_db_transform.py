@@ -105,11 +105,36 @@ def _build_size(size: int) -> str:
 
 
 def _build_tags(film: Dict[Any, Any]) -> List[str]:
-    return [
-        "all",
-        f"res_{film['Media'][0]['videoResolution']}",
-        "watched" if film.get("lastViewedAt") else "unwatched",
-    ] + (["dupe"] if len(film["Media"]) > 1 else [])
+    return (
+        [
+            "all",
+            f"res_{film['Media'][0]['videoResolution']}",
+            "watched" if film.get("lastViewedAt") else "unwatched",
+        ]
+        + (["dupe"] if len(film["Media"]) > 1 else [])
+        + _build_lang_tags(film)
+        + _build_subtitles_tags(film)
+    )
+
+
+def _build_lang_tags(film: Dict[Any, Any]) -> List[str]:
+    return sorted(
+        {
+            f"lang_{stream.get('language', stream.get('languageCode', stream.get('languageTag', 'unknown'))).lower()}"
+            for stream in film["Metadata"][0]["Media"][0]["Part"][0]["Stream"]
+            if stream["streamType"] == 2
+        }
+    )
+
+
+def _build_subtitles_tags(film: Dict[Any, Any]) -> List[str]:
+    return sorted(
+        {
+            f"subs_{stream.get('language', stream.get('languageCode', stream.get('languageTag', 'unknown'))).lower()}"
+            for stream in film["Metadata"][0]["Media"][0]["Part"][0]["Stream"]
+            if stream["streamType"] == 3
+        }
+    )
 
 
 def _build_imdb_ref(guid: str, title: str, year: int) -> str:

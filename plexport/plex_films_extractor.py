@@ -41,24 +41,35 @@ class PlexFilmsExtractor:
         while self._has_more_films(plex_films, page_offset, page_size):
             page_offset += page_size
             plex_films["MediaContainer"]["Metadata"].extend(self._extract_films_page(token, page_offset, page_size)["MediaContainer"]["Metadata"])
-        return plex_films
+        return self._enrich_metadata(token, plex_films)
 
     def _extract_films_page(self, plex_token: str, page_offset: int, page_size: int) -> Dict[Any, Any]:
         url = (
             f"https://{self.host}:{self.port}/library/sections/1/all?type=1&includeCollections=1"
             f"&includeAdvanced=1&includeMeta=1&X-Plex-Container-Start={page_offset}"
             f"&X-Plex-Container-Size={page_size}"
-            f"&X-Plex-Token={plex_token}"
         )
         headers = {
             "Accept": "application/json",
             "Accept-Language": "en-GB",
+            "X-Plex-Token": plex_token,
         }
         return dict(requests.get(url, headers=headers, verify=False).json())
 
     @staticmethod
     def _has_more_films(plex_db: Dict[Any, Any], page_offset: int, page_size: int) -> bool:
         return int(plex_db["MediaContainer"]["totalSize"]) > (page_offset / page_size + 1) * page_size
+
+    def _enrich_metadata(self, plex_token: str, plex_films: Dict[Any, Any]) -> Dict[Any, Any]:
+        for film in plex_films["MediaContainer"]["Metadata"]:
+            url = f"https://{self.host}:{self.port}/library/metadata/{int(film['ratingKey'])}"
+            headers = {
+                "Accept": "application/json",
+                "Accept-Language": "en-GB",
+                "X-Plex-Token": plex_token,
+            }
+            film["Metadata"] = dict(requests.get(url, headers=headers, verify=False).json()).get("MediaContainer", {}).get("Metadata", {})
+        return plex_films
 
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)

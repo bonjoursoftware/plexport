@@ -634,6 +634,36 @@
           {
             "tag": "Janus Bager Kristensen 2013"
           }
+        ],
+        "Metadata": [
+          {
+            "Media": [
+              {
+                "Part": [
+                  {
+                    "Stream": [
+                      {
+                        "streamType": 2,
+                        "language": "English"
+                      },
+                      {
+                        "streamType": 3,
+                        "language": "English"
+                      },
+                      {
+                        "streamType": 3,
+                        "language": "German"
+                      },
+                      {
+                        "streamType": 3,
+                        "languageTag": "German"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -720,6 +750,36 @@
           {
             "tag": "Cas Jansen"
           }
+        ],
+        "Metadata": [
+          {
+            "Media": [
+              {
+                "Part": [
+                  {
+                    "Stream": [
+                      {
+                        "streamType": 2,
+                        "languageCode": "spa"
+                      },
+                      {
+                        "streamType": 2,
+                        "languageCode": "fra"
+                      },
+                      {
+                        "streamType": 2,
+                        "languageCode": "fra"
+                      },
+                      {
+                        "streamType": 3,
+                        "languageCode": "fra"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -794,6 +854,28 @@
           {
             "tag": "Ken"
           }
+        ],
+        "Metadata": [
+          {
+            "Media": [
+              {
+                "Part": [
+                  {
+                    "Stream": [
+                      {
+                        "streamType": 2,
+                        "languageTag": "und"
+                      },
+                      {
+                        "streamType": 3,
+                        "languageTag": "xxx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -866,6 +948,28 @@
           },
           {
             "tag": "Ken"
+          }
+        ],
+        "Metadata": [
+          {
+            "Media": [
+              {
+                "Part": [
+                  {
+                    "Stream": [
+                      {
+                        "streamType": 1,
+                        "whatever": "what"
+                      },
+                      {
+                        "streamType": 4,
+                        "thing": "truc"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
