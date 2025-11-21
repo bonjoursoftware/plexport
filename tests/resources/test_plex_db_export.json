@@ -973,7 +973,9 @@
           }
         ]
       },
-      {"unexpected_entry": "what is that thing?"}
+      {
+        "unexpected_entry": "what is that thing?"
+      }
     ]
   }
 }

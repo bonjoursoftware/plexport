@@ -24,8 +24,9 @@ import os
 import requests
 import urllib3
 
+from concurrent import futures
 from dataclasses import dataclass
-from typing import Any, Dict
+from typing import Any, Dict, cast
 
 
 @dataclass
@@ -61,15 +62,25 @@ class PlexFilmsExtractor:
         return int(plex_db["MediaContainer"]["totalSize"]) > (page_offset / page_size + 1) * page_size
 
     def _enrich_metadata(self, plex_token: str, plex_films: Dict[Any, Any]) -> Dict[Any, Any]:
-        for film in plex_films["MediaContainer"]["Metadata"]:
-            url = f"https://{self.host}:{self.port}/library/metadata/{int(film['ratingKey'])}"
-            headers = {
-                "Accept": "application/json",
-                "Accept-Language": "en-GB",
-                "X-Plex-Token": plex_token,
+        with futures.ThreadPoolExecutor() as executor:
+            metadata_requests = {
+                executor.submit(self._fetch_film_metadata, plex_token, int(film["ratingKey"])): film for film in (plex_films["MediaContainer"]["Metadata"])
             }
-            film["Metadata"] = dict(requests.get(url, headers=headers, verify=False).json()).get("MediaContainer", {}).get("Metadata", {})
+
+            for metadata_request in futures.as_completed(metadata_requests):
+                film = metadata_requests[metadata_request]
+                film["Metadata"] = metadata_request.result()
+
         return plex_films
+
+    def _fetch_film_metadata(self, plex_token: str, film_rating_key: int) -> Dict[Any, Any]:
+        url = f"https://{self.host}:{self.port}/library/metadata/{film_rating_key}"
+        headers = {
+            "Accept": "application/json",
+            "Accept-Language": "en-GB",
+            "X-Plex-Token": plex_token,
+        }
+        return cast(Dict[Any, Any], dict(requests.get(url, headers=headers, verify=False).json()).get("MediaContainer", {}).get("Metadata", {}))
 
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
